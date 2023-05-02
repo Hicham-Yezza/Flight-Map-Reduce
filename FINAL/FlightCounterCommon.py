@@ -11,21 +11,52 @@ def clean_data(df):
     # Add a header row to the DataFrame
     df.columns = ['PassengerID', 'FlightID', 'Origin', 'Destination', 'Depart_Time', 'Duration']
 
+    # Examining the data in the dataframe
+    print("")
+    print("Original dataframe:")
+    print("")
+    print(df.head(5))
+    print("")
+    print("Number of rows: ", df.shape[0])
+    print("Number of columns: ", df.shape[1])
+
+    # Adding a header row featuring: 
+    # PassngerID -- Format: 𝑋𝑋𝑋𝑛𝑛𝑛𝑛𝑋𝑋𝑛
+    # FlightID -- Format: 𝑋𝑋𝑋𝑛𝑛𝑛𝑛𝑋
+    # Origin -- From airport IATA/FAA code Format: 𝑋𝑋𝑋
+    # Destination -- Destination airport IATA/FAA code Format: 𝑋𝑋𝑋
+    # Depart_Time -- Departure time (GMT) Format: 𝑛 [10] (Unix ‘epoch’ time)
+    # Duration -- Total flight time (mins) Format: 𝑛 [1. .4]
+
+    df.columns = ['PassengerID', 'FlightID', 'Origin', 'Destination', 'Depart_Time', 'Duration']
+
+    # Display the data in the dataframe with the added header row
+
+    print("")
+    print("Adding a header row:")
+    print("")
+    print(df.head(5))
+    print("")
+    print("Number of rows: ", df.shape[0])
+    print("Number of columns: ", df.shape[1])
+    
     # Removing duplicated rows
+
     df = df.drop_duplicates()
+    
+    print("")
+    print("Removing duplicates:")
+    print("")
+    print(df.head(5))
+    
+    # Access the cleaned data in the dataframe
+    print("")
+    print("Number of rows: ", df.shape[0])
+    print("Number of columns: ", df.shape[1])
 
     return df
 
 def mapper(data_chunk):
-    """
-    Maps a PassengerID to a key-value pair.
-
-    Parameters:
-        passenger_id (int): The PassengerID to map.
-
-    Returns:
-        tuple: A key-value pair of the PassengerID and a count of 1.
-    """
     thread_id = threading.get_ident() % os.cpu_count() + 1
     mapped_data = []
     for passenger_id in data_chunk['PassengerID']:
@@ -33,16 +64,6 @@ def mapper(data_chunk):
     return mapped_data
 
 def combiner(mapped_data):
-    """
-    Groups the counts for each PassengerID.
-
-    Parameters:
-        passenger_id (int): The PassengerID.
-        count_list (list): A list of counts (should only contain 1s).
-
-    Returns:
-        tuple: A key-value pair of the PassengerID and a list of counts.
-    """
     # Use a dictionary to group the data by PassengerID
     grouped_data = {}
     for passenger_id, count in mapped_data:
@@ -58,15 +79,6 @@ def combiner(mapped_data):
     return reduced_data
 
 def run_map_reduce(input_data):
-    """
-    Runs a map-reduce job to count the number of flights for each PassengerID.
-
-    Parameters:
-        input_data (pandas.DataFrame): The input data.
-        
-    Returns:
-        pandas.DataFrame: A DataFrame containing the total number of flights for each PassengerID.
-    """
     print("Calculating number of mappers...")
     num_mappers = os.cpu_count()
     print(f"Number of mappers: {num_mappers}")
