@@ -12,4 +12,4 @@ if __name__ == '__main__':
     
     # call run_map_reduce
 
-    run_map_reduce(df
+    run_map_reduce(df)
