@@ -108,7 +108,7 @@ def run_map_reduce(input_data):
 
     # Use ThreadPoolExecutor to run the mapper and reducer across all processor cores
     with ThreadPoolExecutor(max_workers=os.cpu_count()) as executor:
-        # Map each chunk to a key-value pair using the mapper
+        # Map each chunk row to a key-value pair using the mapper
         mapped_data_chunks = list(executor.map(mapper, data_chunks))
 
     # Flatten the mapped data
