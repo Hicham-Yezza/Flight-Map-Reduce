@@ -1,8 +1,14 @@
-# Sample GitLab Project
+# iy805428 -- 
 
-This sample project shows how a project in GitLab looks for demonstration purposes. It contains issues, merge requests and Markdown files in many branches,
-named and filled with lorem ipsum.
+The map-reduce paradigm offers a simple yet powerful approach for leveraging distributed and parallel processing capabilities to increase computational efficiency. 
 
-You can look around to get an idea how to structure your project and, when done, you can safely delete this project.
+In this project a software prototype is proposed for implementing a map-reduce-like programme for identifying passengers with the most flights from a provided list. 
 
-[Learn more about creating GitLab projects.](https://docs.gitlab.com/ee/gitlab-basics/create-project.html)
+The design successfully addressed the task through the use of a mapper-combiner setup and the deployment of multithreading. 
+
+The programme is comprised of two main files: 
+
+- FlightCounterMain.py and 
+- FlightCounterCommon.py
+
+
