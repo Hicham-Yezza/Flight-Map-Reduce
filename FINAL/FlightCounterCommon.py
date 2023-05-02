@@ -1,4 +1,5 @@
 # Flight Counter - common.py
+# Definitions of functions called  by FlightCountMain.py
 
 import pandas as pd
 import threading
@@ -16,6 +17,15 @@ def clean_data(df):
     return df
 
 def mapper(data_chunk):
+     """
+    Maps a PassengerID to a key-value pair.
+
+    Parameters:
+        passenger_id (int): The PassengerID to map.
+
+    Returns:
+        tuple: A key-value pair of the PassengerID and a count of 1.
+    """
     thread_id = threading.get_ident() % os.cpu_count() + 1
     mapped_data = []
     for passenger_id in data_chunk['PassengerID']:
@@ -23,6 +33,16 @@ def mapper(data_chunk):
     return mapped_data
 
 def combiner(mapped_data):
+    """
+    Groups the counts for each PassengerID.
+
+    Parameters:
+        passenger_id (int): The PassengerID.
+        count_list (list): A list of counts (should only contain 1s).
+
+    Returns:
+        tuple: A key-value pair of the PassengerID and a list of counts.
+    """
     # Use a dictionary to group the data by PassengerID
     grouped_data = {}
     for passenger_id, count in mapped_data:
@@ -38,6 +58,15 @@ def combiner(mapped_data):
     return reduced_data
 
 def run_map_reduce(input_data):
+    """
+    Runs a map-reduce job to count the number of flights for each PassengerID.
+
+    Parameters:
+        input_data (pandas.DataFrame): The input data.
+        
+    Returns:
+        pandas.DataFrame: A DataFrame containing the total number of flights for each PassengerID.
+    """
     print("Calculating number of mappers...")
     num_mappers = os.cpu_count()
     print(f"Number of mappers: {num_mappers}")
