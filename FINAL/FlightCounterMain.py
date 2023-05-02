@@ -1,6 +1,10 @@
+#!/usr/bin/env python
+
 #FlightCounter - Main.py
 
-from common import run_map_reduce
+import pandas as pd
+
+import FlightCounterCommon
 
 if __name__ == '__main__':
     
@@ -8,7 +12,7 @@ if __name__ == '__main__':
     df = pd.read_csv('AComp_Passenger_data_no_error.csv', header=None, names=['PassengerID', 'FlightID', 'Origin', 'Destination', 'Depart_Time', 'Duration'])
     
     # Preprocess the data     
-    df = clean_data(df)
+    df = FlightCounterCommon.clean_data(df)
     
     # call run_map_reduce
 
