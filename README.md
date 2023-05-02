@@ -11,7 +11,7 @@ In this project a software prototype is proposed for implementing a map-reduce-l
 
 The design successfully addressed the task through the use of a mapper-combiner setup and the deployment of multithreading. 
 
-The final coursework submission programme is provided in the #FINAL# folder and is comprised of two main files: 
+The final coursework submission programme is provided in the ##FINAL## folder and is comprised of two main files: 
 
 - FlightCounterMain.py and 
 - FlightCounterCommon.py
