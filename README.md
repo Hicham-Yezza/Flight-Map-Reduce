@@ -1,4 +1,9 @@
-# iy805428 -- 
+# Module Code: CSMBD21
+# Module Name: Big Data and Cloud Computing
+# Student Number: 29805428
+# GitLab repository location: https://csgitlab.reading.ac.uk/iy805428/csmbd21-task-b
+
+
 
 The map-reduce paradigm offers a simple yet powerful approach for leveraging distributed and parallel processing capabilities to increase computational efficiency. 
 
