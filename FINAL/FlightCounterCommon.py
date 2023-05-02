@@ -17,7 +17,7 @@ def clean_data(df):
     return df
 
 def mapper(data_chunk):
-     """
+    """
     Maps a PassengerID to a key-value pair.
 
     Parameters:
